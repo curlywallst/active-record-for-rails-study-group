@@ -12,22 +12,31 @@
 
 ActiveRecord::Schema.define(version: 20180405145920) do
 
-  create_table "artists", force: :cascade do |t|
+  create_table "course_topics", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_topics_on_course_id"
+    t.index ["topic_id"], name: "index_course_topics_on_topic_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "title"
+    t.integer "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_courses_on_teacher_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "song_genres", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "songs", force: :cascade do |t|
+  create_table "topics", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
